@@ -1,0 +1,107 @@
+PROGRAMMES D'EXEMPLE :
+----------------------
+calckeyb		Calculatrice avec clavier et terminal
+calculator		Calculatrice avec DIP-switches
+charmap			Affiche une table des caractères de 32 à 127
+fibo			Affiche dans le terminal la suite de Fibonacci
+furelise		Joue "La lettre à Elise" sur le buzzer (mettre la sim. à 16 Hz !)
+keyb			Lit l'entrée clavier et affiche en majuscule / minuscule 1 lettre sur 2
+pascal			Affiche dans le terminal le triangle de Pascal à l'infini
+pi				Calcule une approximation de Pi via approche Monte-Carlo
+pixel			Jeu inspiré de "Snake" sur l'écran matriciel avec score sur l'afficheur
+prime			Liste les nombres premiers sur l'afficheur
+smiley			Affiche un visage souriant sur l'écran matriciel
+testfp			Démonstration des macros de nombres à virgule fixe
+tty				Affiche "PARMESAN!" dans le terminal
+
+NB: le fichier "MIDI.BIN" n'est pas un programme, il s'agit de la ROM du décodeur d'instructions MIDI utilisé pour le buzzer
+Il est en théorie déjà préchargé dans Machine.circ et n'est donc inclus qu'à des fins de complétude.
+
+SCRIPTS FOURNIS :
+-----------------
+compile.sh		Compile avec clang-8
+compile-gcc.sh	Compile avec gcc
+
+ASSEMBLEURS :
+-------------
+ASM.c / ASM.h	Assembleur basique, supporte les instructions requises par la documentation projet (ne supporte pas les MMIO)
+	[params] input.s output.txt
+	-i pour mettre une sortie de débogage dans le fichier
+assembleur.py	Assembleur avancé, à utiliser de préférence (requiert Python 3.8)
+	[params] input.s
+	-O0		Désactive les optimisations, qui sont en temps normal :
+			- ignorer les lignes "add r7, sp" et "push {....}" parfois émises par Clang
+			- ignorer les sauts d'une ligne parfois émis par Clang, qui ne font que ralentir les programmes
+	-nd4	Désactive la division par 4 pour les opérandes sur SP demandée par les specs ARM (les MMIO ne marcheront plus)
+	Sortie dans input.bin
+
+EN-TETES :
+----------
+pins.h			Contient les définitions de broches d'E/S mappées en mémoire ainsi que des macros essentielles
+utils.h			Contient des macros utilitaires complémentaires (utilisation des E/S, affichage avancé, division, ...)
+NB: utils.h est inclus par pins.h
+
+BROCHES : Adresse d'une broche : 256 + n° (en pratique, on aligne SP en début de programme pour que ça colle)
+---------
+nom			type	n°	bits	description
+TTYchr		BIDI	0	8		Affiche un caractère sur le terminal. Contient le dernier caractère affiché
+RES			BIDI	1	32		Registre d'usage général relié à des afficheurs décimaux
+SCRbuf		BIDI	2	32		Buffer de l'écran matriciel (4 lignes par 8 colonnes)
+SCRupd		OUT		3	1		Met à jour l'écran matriciel quand passé à 1
+RESETpin	OUT		4	1		Réinitialise le processeur quand passé à 1 -- voir RESET()
+BREAKpin	OUT		5	1		Déclenche un point d'arrêt quand passé à 1 -- voir BREAK()
+BUZZER		OUT		6	8		Note jouée par le buzzer, silence si le bit 7 est à 0
+DIP1		INP		3	8		DIP switch
+DIP2		INP		4	8		DIP switch
+DIP3		INP		5	8		DIP switch
+KEYBeof		INP		6	1		Contient 1 s'il y a des caractères dans le buffer du clavier
+KEYBchr		INP		7	1		Retire premier caractère du buffer du clavier et le renvoie (Attention : la lecture n'est donc pas idempotente)
+JOYx		INP		8	5		Coordonnée X du joystick
+JOYy		INP		9	5		Coordonnée Y du joystick
+RNG32		INP		10	32		Génère un nombre aléatoire sur 32 bits à la lecture et le renvoie
+RESbcd		INP		11	32		Valeur de RES encodée en BCD (chaque chiffre décimal correspond à un chiffre hexadécimal, 123456 devient 0x00123456)
+R2divR3		INP		12	32		Quotient de R2 et R3
+R2modR3		INP		13	32		Modulo de R2 et R3
+
+MACROS :
+--------
+abs(x)					Valeur absolue de x
+div(a, b, c)			Divise a par b itérativement, quotient dans c
+PIXSET(x, y)			Active le pixel x,y (dans le buffer)
+PIXCLR(x, y)			Désactive le pixel x,y (dans le buffer)
+SCRUPD()				Met à jour l'écran matriciel depuis le buffer
+CLEAR()					Vide le terminal
+RESET()					Réinitialise le processeur -- voir RESETpin
+WAITKEY()				Attend qu'une touche clavier soit pressée
+READKEY()				WAITKEY() puis renvoie la touche lue
+PUTCHAR(x)				Affiche le caractère x dans le terminal
+BREAK()					Déclenche un point d'arrêt -- voir BREAKpin
+NOTE(note)				Joue la note (format MIDI) sur le buzzer
+MUTE()					Silence
+DIV(i, j)				Divise a par b matériellement, renvoie le quotient
+DIVMOD(i, j, quot, mod)	Divise a par b matériellement, quotient dans quot et reste dans mod (pointeurs)
+MOD(i, j)				Divise a par b matériellement, renvoie le reste
+PRINTRES_FIX(width)		Affiche la valeur de RES dans le terminal en largeur fixe (remplit avec 0)
+PRINTRES()				Affiche la valeur de RES dans le terminal en largeur automatique
+PRINTRES_SIGN()			Affiche la valeur de RES dans le terminal en largeur automatique en mode signé
+READINT()				Lit un nombre entier (en base 10) depuis l'entrée clavier
+TOFP(val)				Convertir une constante flottante en nombre à virgule fixe
+MULTFP(x, y)			Multiplie deux nombres à virgule fixe
+DIVFP(x, y)				Divise deux nombres à virgule fixe
+PRINTFP(x)				Affiche un nombre à virgule fixe dans le terminal avec 5 chiffres entiers et 4 chiffres fractionnaires
+SQRTFP(x)				Calcule la racine carrée d'un nombre à virgule fixe (algorithme par Christophe Meesen, comp.lang.c, 1993)
+
+PROGRAMME DE BASE :
+-------------------
+[début code]
+#include "pins.h"
+
+void run() // void plutôt qu'int pour ne pas allouer 4 octets de pile qui ne seront jamais utilisés
+{
+	INIT(); // met en place SP pour le MMIO
+	
+	// code ici
+	
+	while (1); // pour ne pas émettre de bx lr à la fin
+}
+[fin code]

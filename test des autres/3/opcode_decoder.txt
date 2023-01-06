@@ -1,0 +1,27 @@
+# test vector for the Opcode Decoder sub component
+
+Opcode[6]		Shift[1] Data_Processing[1] Load_Store[1] SP_Address[1] Conditional[1]
+
+# 	Opcode		Shift 	Data_Processing	Load_Store 	SP_Address	Conditional
+# SASM
+	000000		1 		0 				0			0			0
+	000001		1 		0 				0			0			0
+	000010		1 		0 				0			0			0
+	000011		1 		0 				0			0			0
+	001000		1 		0 				0			0			0
+	000100		1 		0 				0			0			0
+# DP
+	010000		0 		1 				0			0			0
+# LS
+	100100		0 		0 				1			0			0
+	100110		0 		0 				1			0			0
+# SP
+	101100		0 		0 				0			1			0
+	101101		0 		0 				0			1			0
+	101110		0 		0 				0			1			0
+	101111		0 		0 				0			1			0
+# C
+	110100		0 		0 				0			0			1
+	110101		0 		0 				0			0			1
+	110110		0 		0 				0			0			1
+	110111		0 		0 				0			0			1
