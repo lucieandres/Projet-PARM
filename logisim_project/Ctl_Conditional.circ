@@ -216,8 +216,8 @@ end TCL_Generic;
       <circ-port height="8" pin="150,480" width="8" x="46" y="136"/>
       <circ-port height="8" pin="150,510" width="8" x="46" y="96"/>
       <circ-port height="8" pin="150,540" width="8" x="46" y="156"/>
+      <circ-port height="8" pin="150,610" width="8" x="46" y="56"/>
       <circ-port height="8" pin="180,140" width="8" x="46" y="76"/>
-      <circ-port height="8" pin="250,610" width="8" x="46" y="56"/>
       <rect fill="none" height="140" stroke="#000000" stroke-width="2" width="180" x="60" y="50"/>
       <rect height="20" stroke="none" width="180" x="60" y="170"/>
       <rect height="3" stroke="none" width="10" x="240" y="79"/>
@@ -250,6 +250,9 @@ end TCL_Generic;
     <comp lib="0" loc="(150,540)" name="Pin">
       <a name="label" val="V"/>
     </comp>
+    <comp lib="0" loc="(150,610)" name="Pin">
+      <a name="label" val="Enable"/>
+    </comp>
     <comp lib="0" loc="(180,140)" name="Pin">
       <a name="label" val="Instruction"/>
       <a name="width" val="16"/>
@@ -258,9 +261,6 @@ end TCL_Generic;
       <a name="appear" val="right"/>
       <a name="fanout" val="16"/>
       <a name="incoming" val="16"/>
-    </comp>
-    <comp lib="0" loc="(250,610)" name="Pin">
-      <a name="label" val="Enable"/>
     </comp>
     <comp lib="0" loc="(690,140)" name="Splitter">
       <a name="facing" val="west"/>
@@ -284,6 +284,7 @@ end TCL_Generic;
     <wire from="(150,480)" to="(330,480)"/>
     <wire from="(150,510)" to="(350,510)"/>
     <wire from="(150,540)" to="(370,540)"/>
+    <wire from="(150,610)" to="(720,610)"/>
     <wire from="(180,140)" to="(210,140)"/>
     <wire from="(230,150)" to="(670,150)"/>
     <wire from="(230,160)" to="(670,160)"/>
@@ -297,7 +298,6 @@ end TCL_Generic;
     <wire from="(230,240)" to="(350,240)"/>
     <wire from="(230,250)" to="(340,250)"/>
     <wire from="(230,260)" to="(330,260)"/>
-    <wire from="(250,610)" to="(720,610)"/>
     <wire from="(330,260)" to="(330,430)"/>
     <wire from="(330,430)" to="(390,430)"/>
     <wire from="(330,470)" to="(330,480)"/>
