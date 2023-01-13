@@ -403,6 +403,7 @@ end TCL_Generic;
       <a name="label" val="FALSE"/>
     </comp>
     <comp lib="0" loc="(1330,1270)" name="Pin">
+      <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="Verified"/>
       <a name="output" val="true"/>
@@ -412,6 +413,7 @@ end TCL_Generic;
       <a name="label" val="b10"/>
     </comp>
     <comp lib="0" loc="(140,130)" name="Pin">
+      <a name="appearance" val="NewPins"/>
       <a name="facing" val="north"/>
       <a name="label" val="b10"/>
     </comp>
@@ -420,6 +422,7 @@ end TCL_Generic;
       <a name="label" val="b11"/>
     </comp>
     <comp lib="0" loc="(190,130)" name="Pin">
+      <a name="appearance" val="NewPins"/>
       <a name="facing" val="north"/>
       <a name="label" val="b11"/>
     </comp>
@@ -428,6 +431,7 @@ end TCL_Generic;
       <a name="label" val="Z"/>
     </comp>
     <comp lib="0" loc="(230,130)" name="Pin">
+      <a name="appearance" val="NewPins"/>
       <a name="facing" val="north"/>
       <a name="label" val="Z"/>
     </comp>
@@ -436,6 +440,7 @@ end TCL_Generic;
       <a name="label" val="C"/>
     </comp>
     <comp lib="0" loc="(270,130)" name="Pin">
+      <a name="appearance" val="NewPins"/>
       <a name="facing" val="north"/>
       <a name="label" val="C"/>
     </comp>
@@ -444,8 +449,9 @@ end TCL_Generic;
       <a name="label" val="N"/>
     </comp>
     <comp lib="0" loc="(310,130)" name="Pin">
+      <a name="appearance" val="NewPins"/>
       <a name="facing" val="north"/>
-      <a name="label" val="N"/>
+      <a name="label" val="V"/>
     </comp>
     <comp lib="0" loc="(330,1180)" name="Tunnel">
       <a name="label" val="MI"/>
@@ -476,14 +482,16 @@ end TCL_Generic;
       <a name="label" val="V"/>
     </comp>
     <comp lib="0" loc="(350,130)" name="Pin">
+      <a name="appearance" val="NewPins"/>
       <a name="facing" val="north"/>
-      <a name="label" val="V"/>
+      <a name="label" val="N"/>
     </comp>
     <comp lib="0" loc="(50,100)" name="Tunnel">
       <a name="facing" val="south"/>
       <a name="label" val="b8"/>
     </comp>
     <comp lib="0" loc="(50,130)" name="Pin">
+      <a name="appearance" val="NewPins"/>
       <a name="facing" val="north"/>
       <a name="label" val="b8"/>
     </comp>
@@ -815,6 +823,7 @@ end TCL_Generic;
       <a name="label" val="b9"/>
     </comp>
     <comp lib="0" loc="(90,130)" name="Pin">
+      <a name="appearance" val="NewPins"/>
       <a name="facing" val="north"/>
       <a name="label" val="b9"/>
     </comp>
