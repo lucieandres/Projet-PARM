@@ -210,8 +210,8 @@ end TCL_Generic;
     <a name="clabelup" val="east"/>
     <appear>
       <circ-anchor facing="east" height="6" width="6" x="247" y="57"/>
-      <circ-port height="10" pin="720,140" width="10" x="245" y="55"/>
       <circ-port height="10" pin="790,590" width="10" x="245" y="75"/>
+      <circ-port height="10" pin="830,130" width="10" x="245" y="55"/>
       <circ-port height="8" pin="150,450" width="8" x="46" y="116"/>
       <circ-port height="8" pin="150,480" width="8" x="46" y="136"/>
       <circ-port height="8" pin="150,510" width="8" x="46" y="96"/>
@@ -267,10 +267,8 @@ end TCL_Generic;
       <a name="fanout" val="11"/>
       <a name="incoming" val="11"/>
     </comp>
-    <comp lib="0" loc="(720,140)" name="Pin">
-      <a name="facing" val="west"/>
-      <a name="label" val="Offset"/>
-      <a name="output" val="true"/>
+    <comp lib="0" loc="(700,120)" name="Constant">
+      <a name="value" val="0x0"/>
       <a name="width" val="11"/>
     </comp>
     <comp lib="0" loc="(790,590)" name="Pin">
@@ -278,7 +276,17 @@ end TCL_Generic;
       <a name="label" val="Verified"/>
       <a name="output" val="true"/>
     </comp>
+    <comp lib="0" loc="(830,130)" name="Pin">
+      <a name="facing" val="west"/>
+      <a name="label" val="Offset"/>
+      <a name="output" val="true"/>
+      <a name="width" val="11"/>
+    </comp>
     <comp lib="1" loc="(770,590)" name="AND Gate"/>
+    <comp lib="2" loc="(790,130)" name="Multiplexer">
+      <a name="enable" val="false"/>
+      <a name="width" val="11"/>
+    </comp>
     <comp loc="(610,370)" name="Conditions"/>
     <wire from="(150,450)" to="(390,450)"/>
     <wire from="(150,480)" to="(330,480)"/>
@@ -318,8 +326,11 @@ end TCL_Generic;
     <wire from="(610,370)" to="(660,370)"/>
     <wire from="(660,370)" to="(660,570)"/>
     <wire from="(660,570)" to="(720,570)"/>
-    <wire from="(690,140)" to="(720,140)"/>
+    <wire from="(690,140)" to="(760,140)"/>
+    <wire from="(700,120)" to="(760,120)"/>
+    <wire from="(770,150)" to="(770,590)"/>
     <wire from="(770,590)" to="(790,590)"/>
+    <wire from="(790,130)" to="(830,130)"/>
   </circuit>
   <circuit name="Conditions">
     <a name="appearance" val="logisim_evolution"/>
