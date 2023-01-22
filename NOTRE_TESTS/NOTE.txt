@@ -1,0 +1,9 @@
+Test ALU de Florian
+Test Banc De Registres de 7.
+Test Controlleur de Tom
+Test DataProcessing: Florian+5
+Test LoadStore: 5+7
+Test OpcodeDecoder: 7
+Test SPAdress: Florian
+
+TODO: Test Conditional, Shift_Add_Sub_Mov
