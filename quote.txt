@@ -1,0 +1,12 @@
+c'est vous apprendre la logique combinatoire (portes logiques)
+de là, on apprend la logique séquentielle (quand j'appuie sur le bouton ça incrémente le compteur wow)
+combiner les deux pour faire des circuits séquentiels plus complexes
+
+et de là, vous apprendre comment marche un processeur (simplifié)
+
+comment relier des périphériques d'interaction (clavier, afficheur, terminal)
+
+et comment programmer en assembleur, et dans un "vrai" langage (C) des choses dessus
+l'objectif étant qu'à la fin du projet, vous puissiez dire "du coup on a fait une calculatrice qui affiche le résultat dans le terminal" sans que ça vous émerveille
+idéalement vous ressortirez de ce projet avec un sentiment de comprendre au moins un peu comment un ordinateur fonctionne au plus bas niveau
+pour que ça soit un peu moins de la "magie"
