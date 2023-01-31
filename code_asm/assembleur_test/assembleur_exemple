@@ -6,6 +6,8 @@ void run()
   int a = 1;
   int b = 2;
   int c = a+b;
-  RES = c-a;
+  int d = b-a;
+  RES = c+d;
   END();
 }
+
